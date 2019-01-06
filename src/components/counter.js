@@ -1,3 +1,3 @@
 import React from 'react';
 
-export default ({ count }) => <span>{count}</span>;
+export default ({ count }) => <p>{count}</p>;
