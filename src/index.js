@@ -1,33 +1,22 @@
 import React, { Fragment } from 'react';
 import ReactDOM from 'react-dom';
 import { hot } from 'react-hot-loader';
+import { createStore, combineReducers } from 'redux';
+import { Provider } from 'react-redux';
 
-import { Button, Counter } from './components';
+import * as reducers from './reducers';
+import { IncreaseCount } from './containers';
+
+const store = createStore(combineReducers(reducers));
+
+console.log(store.getState());
 
 class App extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      count: 0
-    };
-  }
-
-  increaseCount = () => {
-    const { count } = this.state;
-
-    this.setState({
-      count: count + 1
-    });
-  };
-
   render() {
-    const { count } = this.state;
-
     return (
-      <Fragment>
-        <Counter count={count} />
-        <Button onClick={this.increaseCount} />
-      </Fragment>
+      <div>
+        <IncreaseCount />
+      </div>
     );
   }
 }
@@ -35,4 +24,9 @@ class App extends React.Component {
 const AppWithHot = hot(module)(App);
 
 var mountNode = document.getElementById('app');
-ReactDOM.render(<AppWithHot />, mountNode);
+ReactDOM.render(
+  <Provider store={store}>
+    <AppWithHot />
+  </Provider>,
+  mountNode
+);
