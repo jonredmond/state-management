@@ -1,10 +1,17 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import ReactDOM from 'react-dom';
 import { hot } from 'react-hot-loader';
 
+import { Button, Counter } from './components';
+
 class App extends React.Component {
   render() {
-    return <div />;
+    return (
+      <Fragment>
+        <Counter count={0} />
+        <Button onCLick={() => {}} />
+      </Fragment>
+    );
   }
 }
 
