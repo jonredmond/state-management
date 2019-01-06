@@ -1,6 +1,6 @@
-# empty-project
+# state-management
 
-Empty project.
+State management code-along for backend to frontend training course.
 
 ## Building and running on localhost
 
