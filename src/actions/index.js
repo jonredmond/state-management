@@ -1,1 +1,2 @@
-export { default as increaseCount } from './increase-count';
+export { default as changeInput } from './change-input';
+export * from './list-actions';

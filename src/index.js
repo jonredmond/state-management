@@ -1,22 +1,26 @@
+import 'babel-polyfill';
 import React, { Fragment } from 'react';
 import ReactDOM from 'react-dom';
 import { hot } from 'react-hot-loader';
-import { createStore, combineReducers } from 'redux';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 
-import * as reducers from './reducers';
-import { IncreaseCount } from './containers';
+import { input, list } from './reducers';
+import { InputForm, List } from './containers';
 
-const store = createStore(combineReducers(reducers));
-
-console.log(store.getState());
+const store = createStore(
+  combineReducers({ input, list }),
+  applyMiddleware(thunk)
+);
 
 class App extends React.Component {
   render() {
     return (
-      <div>
-        <IncreaseCount />
-      </div>
+      <Fragment>
+        <InputForm />
+        <List />
+      </Fragment>
     );
   }
 }
