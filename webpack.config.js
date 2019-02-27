@@ -1,5 +1,8 @@
 const webpack = require('webpack');
 const path = require('path');
+const express = require('express');
+
+const itemServer = require('./server/itemServer');
 
 const config = {
   entry: './src/index.js',
@@ -17,14 +20,15 @@ const config = {
     ]
   },
   resolve: {
-    extensions: [
-      '.js',
-      '.jsx'
-    ]
+    extensions: ['.js', '.jsx']
   },
   devServer: {
+    before: app => {
+      app.use(express.json());
+      app.use('/list', itemServer);
+    },
     contentBase: './dist'
   }
-}
+};
 
 module.exports = config;
