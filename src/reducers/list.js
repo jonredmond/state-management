@@ -1,14 +1,15 @@
-import { SET_LIST } from '../actions/types';
+import { ADD_ITEM } from "../actions/list";
 
-const list = (state = [], action) => {
+const listReducer = (state = [], action) => {
   switch (action.type) {
-    case SET_LIST: {
-      return action.list;
+    case ADD_ITEM: {
+      return [...state, action.item];
     }
+
     default: {
       return state;
     }
   }
 };
 
-export default list;
+export default listReducer;

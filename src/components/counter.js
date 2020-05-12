@@ -1,3 +1,9 @@
-import React from 'react';
+import React from "react";
+import { useSelector } from "react-redux";
 
-export default ({ count }) => <p>{count}</p>;
+const Counter = () => {
+  const count = useSelector((state) => state.counter);
+
+  return <h1>{count}</h1>;
+};
+export default Counter;

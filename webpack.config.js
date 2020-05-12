@@ -1,11 +1,11 @@
 const webpack = require('webpack');
 const path = require('path');
-const express = require('express');
-
-const itemServer = require('./server/itemServer');
 
 const config = {
-  entry: './src/index.js',
+  entry: [
+    'react-hot-loader/patch',
+    './src/index.js'
+  ],
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js'
@@ -20,13 +20,15 @@ const config = {
     ]
   },
   resolve: {
-    extensions: ['.js', '.jsx']
+    extensions: [
+      '.js',
+      '.jsx'
+    ],
+    alias: {
+      'react-dom': '@hot-loader/react-dom'
+    }
   },
   devServer: {
-    before: app => {
-      app.use(express.json());
-      app.use('/list', itemServer);
-    },
     contentBase: './dist'
   }
 };
